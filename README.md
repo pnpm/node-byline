@@ -1,8 +1,6 @@
-# byline — buffered stream for reading lines
+# @pnpm/byline — buffered stream for reading lines
 
-![npm package](https://nodei.co/npm/byline.png?downloads=true&downloadRank=true)
-
-`byline` is a simple module providing a `LineStream`.
+`@pnpm/byline` is a simple module providing a `LineStream`.
 
 - node v0.10 `streams2` (transform stream)
 - supports `pipe`
@@ -14,11 +12,11 @@
 
 ## Install
 
-    npm install byline
+    pnpm add @pnpm/byline
 
 or from source:
 
-    git clone git://github.com/jahewson/node-byline.git
+    git clone git://github.com/pnpm/node-byline.git
     cd node-byline
     npm link
 
@@ -28,7 +26,7 @@ The `byline` module can be used as a function to quickly wrap a readable stream:
 
 ```javascript
 var fs = require('fs'),
-    byline = require('byline');
+    byline = require('@pnpm/byline');
 
 var stream = byline(fs.createReadStream('sample.txt', { encoding: 'utf8' }));
 ```
@@ -47,7 +45,7 @@ You just need to add one line to wrap your readable `Stream` with a `LineStream`
 
 ```javascript
 var fs = require('fs'),	
-    byline = require('byline');
+    byline = require('@pnpm/byline');
 
 var stream = fs.createReadStream('sample.txt');
 stream = byline.createStream(stream);
@@ -105,7 +103,7 @@ stream.on('readable', function() {
 The `byline` transform stream can be directly manipulated like so:
 
 ```javascript
-var LineStream = require('byline').LineStream;
+var LineStream = require('@pnpm/byline').LineStream;
 
 var input = fs.createReadStream('sample.txt');
 var output = fs.createWriteStream('nolines.txt');
@@ -125,19 +123,8 @@ the call to `byline.createStream(stream, options)` or `byline(stream, options)`.
 
     npm test
 
-# v0.8
-
-If you want to use `node-byline` with node v0.8 then you can use the 2.1.x series. Simply use the
-following in your `package.json`:
-
-```javascript
-  "dependencies": {
-  "byline": ">=2.1.0 <3.0.0"
-},
-```
-
 # Simple
-Unlike other modules (of which there are many), `byline` contains no:
+Unlike other modules (of which there are many), `@pnpm/byline` contains no:
 
 - monkeypatching
 - dependencies

@@ -21,7 +21,7 @@
 var assert = require("assert"),
     fs = require('fs'),
     byline = require('../lib/byline'),
-    request = require('request');
+    fetch = require('node-fetch');
 
 var regEx = /\r\n|[\n\v\f\r\x85\u2028\u2029]/g;
 
@@ -154,12 +154,14 @@ describe('byline', function() {
     });
   });
 
-  it('should work with old-style streams', function(done) {
-    var stream = byline(request.get('http://www.google.com'));
+  it('should work with old-style streams', async function() {
+    var stream = byline((await fetch('http://www.google.com')).body);
     stream.on('data',function (data) {
     });
-    stream.on('end',function () {
-      done();
+    return new Promise((resolve) => {
+      stream.on('end',function () {
+        resolve();
+      });
     });
   });
 
